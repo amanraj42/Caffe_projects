@@ -35,6 +35,7 @@ layers {
   bottom: "ip2"
   top: "rl2"
 }
+
 layers {
   name: "prob"
   type: SOFTMAX
