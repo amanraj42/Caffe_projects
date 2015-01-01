@@ -1,0 +1,43 @@
+name: "LogRegg"
+input: "data"
+input_dim: 200
+input_dim: 1
+input_dim: 16
+input_dim: 16
+layers {
+  name: "ip"
+  type: INNER_PRODUCT
+  bottom: "data"
+  top: "ip"
+  inner_product_param {
+    num_output: 100
+    }
+}
+layers {
+  name: "relu1"
+  type: RELU
+  bottom: "ip"
+  top: "rl1"
+}
+layers {
+  name: "ip2"
+  type: INNER_PRODUCT
+  bottom: "rl1"
+  top: "ip2"
+  inner_product_param {
+    num_output: 2
+  }
+}
+
+layers {
+  name: "relu2"
+  type: RELU
+  bottom: "ip2"
+  top: "rl2"
+}
+layers {
+  name: "prob"
+  type: SOFTMAX
+  bottom: "rl2"
+  top: "prob"
+}
