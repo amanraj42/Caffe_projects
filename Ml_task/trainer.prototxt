@@ -7,8 +7,10 @@ layers {
   data_param {
     source: "/home/amanraj/caffe-master/build/tools/train"
     backend: LEVELDB
-    batch_size: 20
-    
+    batch_size: 20 
+  }
+  transform_param {
+      scale: 0.00390625
   }
 
   include: { phase: TRAIN }
@@ -20,8 +22,10 @@ layers {
   top: "label"
   data_param {
     source: "/home/amanraj/caffe-master/build/tools/test"
-    batch_size: 50
-    
+    batch_size: 50    
+ }
+ transform_param {
+     scale : 0.00390625
  }
   include: { phase: TEST }
 }
@@ -34,8 +38,8 @@ layers {
  blobs_lr: 1
  blobs_lr: 2
  convolution_param {
-   num_output: 5
-   kernel_size: 3
+   num_output: 20
+   kernel_size: 5
    stride: 1
    weight_filler {
      type: "xavier"
@@ -65,8 +69,8 @@ layers {
   blobs_lr: 1
   blobs_lr: 2
   convolution_param {
-   num_output: 20
-   kernel_size: 2
+   num_output: 50
+   kernel_size: 5
    stride: 1
    weight_filler {
      type: "xavier"
@@ -83,8 +87,8 @@ layers {
   top: "pool2"
   pooling_param {
      pool: MAX
-     kernel_size: 1
-     stride: 1
+     kernel_size: 2
+     stride: 2
 }
 }
 
@@ -96,7 +100,7 @@ layers {
   blobs_lr: 1
   blobs_lr: 2
   inner_product_param {
-    num_output: 200
+    num_output: 300
     weight_filler {
    type: "xavier"
     }
